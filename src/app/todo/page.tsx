@@ -1,4 +1,4 @@
-export default function Home() {
+export default function TodoPage() {
   return (
     <div>
       <h1>ToDo App Home</h1>
