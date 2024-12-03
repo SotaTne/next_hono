@@ -1,0 +1,60 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id   String  @id @default(uuid())
+  name String?
+
+  // Auth fields
+  email         String         @unique
+  sessions      Session[]
+  Authenticator OAuthAccount[]
+
+  Todo Todo[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Session {
+  sessionId String   @id @unique @default(uuid())
+  userId    String
+  expires   DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Optional for WebAuthn support
+model OAuthAccount {
+  userId            String
+  providerId        String
+  providerAccountId String @unique
+  user              User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([providerId, providerAccountId])
+}
+
+model Todo {
+  id        String  @id @default(uuid())
+  title     String
+  completed Boolean @default(false)
+  user      User?   @relation(fields: [userId], references: [id])
+  userId    String?
+  isPrivate Boolean @default(false)
+  creator   String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

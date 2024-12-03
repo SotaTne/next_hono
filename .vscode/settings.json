@@ -1,0 +1,21 @@
+{
+  "[typescriptreact][typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always"
+    },
+    "editor.formatOnSaveMode": "file",
+    "editor.formatOnSave": false
+  },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.formatOnSaveMode": "file",
+    "editor.formatOnSave": true
+  },
+  "files.watcherExclude": {
+    "**/.next/**": true,
+    "**/node_modules/**": true,
+    "package-lock.json": true
+  },
+  "cSpell.words": ["Usecase"]
+}

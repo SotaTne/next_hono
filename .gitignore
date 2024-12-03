@@ -11,6 +11,8 @@
 .vscode/*
 !.vscode/launch.json
 !.vscode/*.code-snippets
+!.vscode/extensions.json
+!.vscode/settings.json
 .idea/workspace.xml
 .idea/usage.statistics.xml
 .idea/shelf
@@ -43,10 +45,17 @@ lerna-debug.log*
 *.pem
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
+.env.local
+.env.development
 
 # vercel
 .vercel
+
+
+# SQLite
+*.db
+*.db-journal
 
 # typescript
 *.tsbuildinfo
